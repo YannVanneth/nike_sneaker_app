@@ -1,0 +1,61 @@
+name: nike_sneaker_store_app
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  flutter_svg: ^2.1.0
+  get: ^4.7.2
+
+  animate_do: ^4.2.0
+
+  pinput: ^5.0.1
+
+  curved_navigation_bar: ^1.0.6
+
+  google_sign_in: ^6.3.0
+  dio: ^5.8.0+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+   - assets/svg/
+   - assets/png/
+
+  fonts:
+   - family: Poppins
+     fonts:
+       - asset: assets/fonts/Poppins/Poppins-Regular.ttf
+
+   - family: Ralway
+     fonts: 
+       - asset: assets/fonts/Ralway/Raleway-Bold.ttf
+         weight: 700
+       - asset: assets/fonts/Ralway/Raleway-SemiBold.ttf
+         weight: 900
+
+   - family: Futura
+     fonts:
+        - asset: assets/fonts/Futura/futur.ttf
+          weight: 400
+
+        - asset: assets/fonts/Futura/Futura-Bold-font.ttf
+          weight: 600
+
+        - asset: assets/fonts/Futura/Futura-Heavy-font.ttf
+          weight: 700
