@@ -1,3 +1,4 @@
+import 'package:awesome_drawer_bar/awesome_drawer_bar.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,16 +21,101 @@ class HomeScreen extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    return Obx(
+      () => AwesomeDrawerBar(
+        type: StyleState.scaleRotate,
+        controller: controller.drawerController.value,
+        menuScreen: _sideBar(),
+        mainScreen: _home(),
+        borderRadius: 24.0,
+        showShadow: false,
+        backgroundColor: Colors.grey.shade300,
+        slideWidth: MediaQuery.of(context).size.width * 0.55,
+        openCurve: Curves.fastOutSlowIn,
+        closeCurve: Curves.bounceIn,
+      ),
+    );
+  }
+
+  ///
+  /// App Widget
+  ///
+  Widget _home() {
     return Scaffold(
       backgroundColor: Colors.white,
 
-      appBar: _appBar(),
+      appBar: controller.currentPageIndex.value == 1 ? null : _appBar(),
       body: PageView(
         controller: controller.pageController.value,
 
         children: [_body(), const FavoriteScreen()],
       ),
       bottomNavigationBar: _bottomNavigationBar(),
+    );
+  }
+
+  ///
+  /// Side Bar
+  ///
+  Widget _sideBar() {
+    return Scaffold(
+      backgroundColor: AppColors.secondaryColor,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CircleAvatar(
+                radius: 80,
+                backgroundImage: NetworkImage(
+                  "https://avatars.githubusercontent.com/u/141898937?v=4?s=400",
+                ),
+              ),
+              const SizedBox(height: 15),
+              Text(
+                "Yann Vanneth",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: AppFonts.poppins,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 30),
+              for (int i = 0; i < 5; i++)
+                ListTile(
+                  leading: Icon(Icons.car_crash, color: Colors.white),
+                  title: Text(
+                    "item $i",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: AppFonts.poppins,
+                      color: Colors.white,
+                    ),
+                  ),
+                  contentPadding: EdgeInsets.all(0),
+                ),
+              Divider(
+                color: Colors.white,
+                thickness: 5,
+                radius: BorderRadius.all(Radius.circular(8)),
+              ),
+              ListTile(
+                leading: Icon(Icons.logout, color: Colors.white),
+                title: Text(
+                  "Sign out",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: AppFonts.poppins,
+                    color: Colors.white,
+                  ),
+                ),
+                contentPadding: EdgeInsets.all(0),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
@@ -46,7 +132,7 @@ class HomeScreen extends GetView<HomeController> {
         child: Row(
           children: [
             GestureDetector(
-              onTap: () {},
+              onTap: controller.toggleDrawer,
               child: SvgPicture.asset(AssetsResource.hamburger, height: 24),
             ),
             Spacer(),

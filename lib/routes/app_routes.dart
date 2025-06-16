@@ -42,7 +42,7 @@ final appRoutes = [
 
   GetPage(
     name: AppRoutes.home,
-    page: () => const HomeScreen(),
+    page: () => HomeScreen(),
     binding: BindingsBuilder.put(() => HomeController()),
   ),
   GetPage(name: AppRoutes.detailScreen, page: () => const DetailScreen()),

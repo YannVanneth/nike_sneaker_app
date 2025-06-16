@@ -1,9 +1,12 @@
+import 'package:awesome_drawer_bar/awesome_drawer_bar.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:nike_sneaker_store_app/routes/app_routes.dart';
 
 class HomeController extends GetxController {
   final pageController = PageController().obs;
+  final drawerController = AwesomeDrawerBarController().obs;
+  final currentPageIndex = 0.obs;
 
   void handleToProductDetailScreen() {
     Get.toNamed(AppRoutes.detailScreen);
@@ -15,11 +18,17 @@ class HomeController extends GetxController {
       duration: Duration(microseconds: 600),
       curve: Curves.bounceInOut,
     );
+
+    Future.delayed(
+      Duration(milliseconds: 50),
+    ).then((_) => currentPageIndex(index));
+  }
+
+  void toggleDrawer() {
+    drawerController.value.toggle!();
   }
 
   int getCurrentPage() {
-    final page =
-        pageController.value.hasClients ? pageController.value.page : null;
-    return page?.round() ?? 0;
+    return currentPageIndex.value;
   }
 }

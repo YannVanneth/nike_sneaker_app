@@ -1,0 +1,51 @@
+{
+    "folderTemplates.structures": [
+        {
+            "name": "Getx Folder",
+            "omitParentDirectory": true,
+            "structure": [
+                {
+                    "fileName": "views/<FTName % snakecase>.dart",
+                    "template": "FlutterStatelessWidget"
+                },
+                {
+                    "fileName": "controller/<FTName % snakecase>_controller.dart",
+                    "template": "GetxControllerFile"
+                },
+                {
+                    "fileName": "binding/<FTName % snakecase>_binding.dart",
+                    "template": "GetxBindings",
+                },
+            ]
+        }
+    ],
+    "folderTemplates.fileTemplates": {
+        "FlutterStatelessWidget": [
+            "import 'package:flutter/material.dart';",
+            "                               ",
+            "class <FTName % PascalCase> extends StatelessWidget {",
+            "  const <FTName % PascalCase> ({super.key});",
+            "                               ",
+            "  @override",
+            "  Widget build(BuildContext context) {",
+            "  return Scaffold();",
+            "  }",
+            " }"
+        ],
+        "GetxControllerFile": [
+            "import 'package:get/get.dart';",
+            "class <FTName % PascalCase>Controller extends GetxController{}"
+        ],
+        "GetxBindings": [
+            "import 'package:get/get.dart';",
+            "import '../controller/<FTName % snakecase>_controller.dart';",
+            "                               ",
+            "class <FTName % PascalCase>Binding extends Bindings {",
+            "  @override",
+            "  void dependencies() {",
+            "   Get.lazyPut(() => <FTName % PascalCase>Controller(),);",
+            "  }",
+            "}"
+        ]
+    }
+}
